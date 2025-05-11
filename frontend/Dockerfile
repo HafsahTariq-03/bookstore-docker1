@@ -1,20 +1,7 @@
-# Use Node.js as the base image
-FROM node:18-alpine
+FROM nginx:alpine
 
-# Set working directory
-WORKDIR /app
+COPY dist /usr/share/nginx/html
 
-# Copy package files
-COPY package*.json ./
+EXPOSE 80
 
-# Install dependencies
-RUN npm install
-
-# Copy source code
-COPY . .
-
-# Expose the development server port
-EXPOSE 3000
-
-# Start the development server
-CMD ["npm", "run", "dev"]
+CMD ["nginx", "-g", "daemon off;"] 
