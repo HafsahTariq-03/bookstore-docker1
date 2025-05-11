@@ -17,6 +17,6 @@ services:
       - REACT_APP_API_URL=http://localhost:5555
     depends_on:
       - backend
-
-volumes:
-  mongo-data:
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
