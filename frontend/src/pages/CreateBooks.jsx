@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import api from '../config/axios';
 
 const CreateBooks = () => {
   const [title, setTitle] = useState('');
@@ -20,8 +20,8 @@ const CreateBooks = () => {
       publishYear,
     };
     setLoading(true);
-    axios
-      .post('http://localhost:5555/books', data)
+    api
+      .post('/books', data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Book Created successfully', { variant: 'success' });
@@ -29,7 +29,6 @@ const CreateBooks = () => {
       })
       .catch((error) => {
         setLoading(false);
-        // alert('An error happened. Please Chack console');
         enqueueSnackbar('Error', { variant: 'error' });
         console.log(error);
       });
@@ -74,6 +73,6 @@ const CreateBooks = () => {
       </div>
     </div>
   );
-}
+};
 
-export default CreateBooks
+export default CreateBooks;

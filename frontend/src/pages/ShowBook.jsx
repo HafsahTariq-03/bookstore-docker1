@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
+import api from '../config/axios';
 
 const ShowBook = () => {
   const [book, setBook] = useState({});
@@ -11,8 +11,8 @@ const ShowBook = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(`http://54.66.230.6:5555/books/${id}`)
+    api
+      .get(`/books/${id}`)
       .then((response) => {
         setBook(response.data);
         setLoading(false);
